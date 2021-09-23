@@ -4,54 +4,32 @@ using UnityEngine;
 
 public class SmallGoblin : MonoBehaviour
 {
-    void OnTriggerEnter2D(Collider2D collision)
+    [SerializeField] float ghp = 3;
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("Weapon")) 
+        BrokenShortSword brokenShortSword = other.gameObject.GetComponent<BrokenShortSword>();
+
+        ProcessHit(brokenShortSword);
+    }
+
+    private void ProcessHit(BrokenShortSword brokenShortSword) 
+    {
+        ghp -= brokenShortSword.GetDamage();
+        if (ghp <= 0)
         {
-            Debug.Log("it should work");
+            Destroy(gameObject);   
         }
     }
 
-
-
-
-
-
-
-
-
-    public int ghp;
-    /*
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    //
-
-    }
-    */
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-        
-       // if (collision.gameObject.CompareTag("Weapon"))
-        //{
-          // Debug.Log("it should be funtioning");
-          // ghp -= 1;
-          // //new WaitForSeconds(1f);
-          // if (ghp == 0)
-          //  {
-          //    Destroy(gameObject);
-
-          //  }
-       // }
-   // }
-    // collision.gameObject.GetComponent<player1>().GameOver();
-
 }
+
+
+
+
+
+
+
+
+
+
 
