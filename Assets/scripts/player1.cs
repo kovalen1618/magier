@@ -24,16 +24,13 @@ public class player1 : MonoBehaviour
     void FixedUpdate()
     {
         float xInput = Input.GetAxis("Horizontal") * move_speed;
-
-
-
         float yInput = Input.GetAxis("Vertical") * move_speed;
 
         rig.velocity = new Vector2(xInput, yInput);
 
         //animation//
 
-        animate.SetFloat("speed", Mathf.Abs(xInput    +    yInput)); 
+        animate.SetFloat("speed", Mathf.Abs(xInput + yInput)); 
     }
 
     /*

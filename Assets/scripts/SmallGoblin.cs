@@ -4,20 +4,30 @@ using UnityEngine;
 
 public class SmallGoblin : MonoBehaviour
 {
-    [SerializeField] float ghp = 3;
-    void OnTriggerEnter2D(Collider2D other)
+    [SerializeField] float maxHealth = 3;
+    float currentHealth;
+
+
+    private void Start()
+    {
+        currentHealth = maxHealth;
+    }
+
+    /*void OnTriggerEnter2D(Collider2D other)
     {
         BrokenShortSword brokenShortSword = other.gameObject.GetComponent<BrokenShortSword>();
 
         ProcessHit(brokenShortSword);
-    }
+    }*/
 
-    private void ProcessHit(BrokenShortSword brokenShortSword) 
+    public void ProcessHit(float damage) 
     {
-        ghp -= brokenShortSword.GetDamage();
-        if (ghp <= 0)
+        currentHealth -= damage;
+
+        if (currentHealth <= 0)
         {
-            Destroy(gameObject);   
+            Destroy(gameObject);
+            // If animation for goblin death is needed: https://youtu.be/sPiVz1k-fEs?t=809
         }
     }
 
